@@ -1,0 +1,15 @@
+function iqTest(numbers){
+numbers=numbers.split(" ");
+var check=[],check1=[];
+numbers.forEach(item=>{
+  if(item%2==0)
+  {
+  check.push(item)  
+  }
+  else if(item%2!=0)
+   {
+   check1.push(item)
+   }
+});
+return (check.length==1)?numbers.indexOf(check[0])+1:numbers.indexOf(check1[0])+1
+}
