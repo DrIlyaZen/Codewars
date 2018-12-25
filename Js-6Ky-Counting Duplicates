@@ -1,0 +1,27 @@
+Count the number of Duplicates
+Write a function that will return the count of distinct case-insensitive alphabetic characters and numeric digits that occur more than once in the input string. The input string can be assumed to contain only alphabets (both uppercase and lowercase) and numeric digits.
+-------------------------------------------------------------------------------------------------------
+function unique(arr) {
+  var obj = {};
+
+  for (var i = 0; i < arr.length; i++) {
+    var str = arr[i];
+    obj[str] = true; 
+  }
+
+  return Object.keys(obj); 
+}
+function duplicateCount(text){
+text=text.toLowerCase();
+var check=[];
+for(var i=0;i<text.length;i++)
+{
+if(text.lastIndexOf(text[i])!=i)
+{
+  check.push(text.lastIndexOf(text[i]))
+}
+}
+var result=unique(check);
+return result.length
+}
+-------------------------------------------------------------------------------------------------
