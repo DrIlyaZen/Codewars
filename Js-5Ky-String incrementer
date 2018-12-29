@@ -1,0 +1,19 @@
+Your job is to write a function which increments a string, to create a new string. If the string already ends with a number, the number should be incremented by 1. If the string does not end with a number the number 1 should be appended to the new string.
+--------------------------------------------------------------------------------------------------------------------------
+function incrementString (strng) {
+var numb=[];
+var a=strng.split("");
+  a.forEach((b)=>{
+            if((b==+b)||b==0)
+  {
+    numb.push(b)
+  }         
+  })
+  numb=numb.join("")
+var str=strng.slice(0,strng.length-numb.length);
+var add=+numb+1;add=add+"";
+var numbinc=numb.length-add.length
+if(numbinc<0){numbinc=0}
+var numb2=numb.slice(0,numbinc)
+return str+numb2+add
+}
