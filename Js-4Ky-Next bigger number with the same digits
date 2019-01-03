@@ -1,0 +1,38 @@
+You have to create a function that takes a positive integer number and returns the next bigger number formed by the same digits:
+
+12 ==> 21
+513 ==> 531
+2017 ==> 2071
+------------------------------------------------------------------------------
+function nextBigger(n){
+var check=n;
+n=n+"";
+n=n.split("").reverse().join("");
+var findIn=0;
+  for(var i=0;i<n.length;i++)
+    {
+      if(n[i]==n[i+1]){continue}
+      if(n[i]>n[i+1])
+       {
+         findIn=i+1;
+         break;
+       }
+    };
+if(findIn==0){return -1}
+var swap=n.slice(0,findIn).split("");
+var newFind=0;
+    for(var j=0;j<swap.length;j++)
+    {
+if(swap[j]>n[findIn])
+  {
+    newFind=swap[j];
+    swap[j]=n[findIn];
+    break;
+  }
+  }
+ var right=n.slice(findIn+1).split("").reverse().join("");
+ var result=right+newFind+swap.join("")
+ if(result==check || result==0 ){return -1}
+ return +result;
+}
+------------------------------------------------------------------------------------
