@@ -1,0 +1,21 @@
+Write
+
+function smaller(arr)
+that given an array arr, you have to return the amount of numbers that are smaller than arr[i] to the right.
+--------------------------------------------------------------------------
+function smaller(arr) {
+ var check=0;
+  var result=[];
+ for(var i=0;i<arr.length;i++)
+   {
+     check=0;
+     for(var j=i+1;j<arr.length;j++)
+       {
+         if(arr[i]<=arr[j]){continue}
+         check++ 
+       }
+    result.push(check)
+   }
+return result
+}
+-------------------------------------------------------------------------------
