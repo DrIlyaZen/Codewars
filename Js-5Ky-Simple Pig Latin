@@ -1,0 +1,15 @@
+Move the first letter of each word to the end of it, then add "ay" to the end of the word. Leave punctuation marks untouched.
+--------------------------------------------------------------------------------
+function pigIt(str){
+var aplh="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+str=str.split(" ");var first="";var second="";var result=[];
+ for(var i=0;i<str.length;i++)
+   {
+     if(str[i].length<=1 && aplh.indexOf(str[i])==-1){result.push(str[i])
+ continue;}
+    first=str[i][0];
+    second=str[i].slice(1);
+    result.push(second+first+"ay")
+   }
+return result.join(" ")
+}
