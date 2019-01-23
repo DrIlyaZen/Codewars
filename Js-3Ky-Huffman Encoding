@@ -1,0 +1,87 @@
+// takes: String; returns: [ [String,Int] ] (Strings in return value are single characters)
+function frequencies(s) {
+  return s.split('')
+    .sort((a,b) => a.localeCompare(b))
+    .join('')
+    .replace(/(?<=(.))(?!\1)/g, '|')
+    .split('|')
+    .filter(f => f)
+    .map(f => [f[0], f.length])
+    .sort((a,b) => a[1] > b[1] ? -1 : a[1] < b[1] ? 1 : a[0].localeCompare(b[0]));
+}
+
+// takes: [ [String,Int] ], String; returns: String (with "0" and "1")
+function encode(freqs,s) {
+  if (freqs.length <= 1) return null;
+  freqs.sort((a,b) => a[1] > b[1] ? -1 : a[1] < b[1] ? 1 : a[0].localeCompare(b[0])); // Ensure descending frequency order
+  let tree = {left: freqs[0][0], right: null};
+  let cursor = tree;
+  for (let i = 1; i < freqs.length; ++i) {
+    if (cursor.right == null) {
+      if (i < freqs.length - 1) {
+        cursor.right = {left: null, right: null};
+        cursor = cursor.right;
+        cursor.left = freqs[i][0];
+      } else {
+        cursor.right = freqs[i][0];
+      }
+    } else {
+      cursor.right = {left: null, right: null};
+      cursor = cursor.right;
+      cursor.left = freqs[i][0];
+    }    
+  }
+  let ans = '';
+  for (let i = 0; i < s.length; ++i) {
+    let cursor = tree;
+    while (cursor.left && cursor.left != s[i] && cursor.right != null && cursor.right != s[i]) {
+        ans += '1';
+        cursor = cursor.right;
+    }
+    if (cursor.left && cursor.left === s[i]) ans += '0';
+    if (cursor.right && cursor.right === s[i]) ans += '1';
+  }
+  return ans;
+}
+
+// takes [ [String, Int] ], String (with "0" and "1"); returns: String
+function decode(freqs,bits) {
+  if (freqs.length <= 1) return null;
+  if (!bits) return '';
+  freqs.sort((a,b) => a[1] > b[1] ? -1 : a[1] < b[1] ? 1 : a[0].localeCompare(b[0])); // Ensure descending frequency order
+  let tree = {left: freqs[0][0], right: null};
+  let cursor = tree;
+  for (let i = 1; i < freqs.length; ++i) {
+    if (cursor.right == null) {
+      if (i < freqs.length - 1) {
+        cursor.right = {left: null, right: null};
+        cursor = cursor.right;
+        cursor.left = freqs[i][0];
+      } else {
+        cursor.right = freqs[i][0];
+      }
+    } else {
+      cursor.right = {left: null, right: null};
+      cursor = cursor.right;
+      cursor.left = freqs[i][0];
+    }    
+  }
+  let ans = '';
+  let bitsarr = bits.split('');
+  cursor = tree;
+  for (let i = 0; i < bitsarr.length; ++i) {
+    let bit = bitsarr[i];
+    if (bit === '0') {
+      ans += cursor.left;
+      cursor = tree;
+    } else {
+      if (cursor.right && cursor.right.left) {
+        cursor = cursor.right;
+      } else {
+        ans += cursor.right;
+        cursor = tree;
+      }
+    }
+  }
+  return ans;
+}
