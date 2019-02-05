@@ -1,0 +1,20 @@
+Sum of (Two) Squares
+We are asking for a function to take a positive integer value, and return a list of all positive integer pairs whose values - when squared- sum to the given integer.
+
+For example, given the parameter 25, the function could return two pairs of 5,0 and 3,4 because 5^2 + 0^2 = 25 and 3^2 + 4^2 = 25.
+
+-----------------------------------------------------------------------------
+function allSquaredPairs(num) {
+if(num==0){return [[0,0]]};
+ var a;num>5?a=Math.ceil(Math.sqrt(num/2)):a=num;
+  var result=[];
+  for(var i=0;i<a;i++)
+    {
+ var b=Math.sqrt(num-i*i);
+    if(b==Math.round(b))
+      {
+        result.push([i,b])
+      }
+    }
+return result;
+}
