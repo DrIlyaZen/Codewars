@@ -1,0 +1,20 @@
+What is an anagram? Well, two words are anagrams of each other if they both contain the same letters. For example:
+
+'abba' & 'baab' == true
+
+'abba' & 'bbaa' == true
+
+'abba' & 'abbba' == false
+
+'abba' & 'abca' == false
+-------------------------------------------------------------------------------------------------
+function anagrams(word, words) {
+let wordsSort=words.map(a=>a.split("").sort().join(""));
+let wordSort=word.split("").sort().join("");
+  let result=[];
+  for(let i=0;i<words.length;i++)
+    {
+      if(wordsSort[i]==wordSort){result.push(words[i])}
+    }
+return result;
+}
