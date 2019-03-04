@@ -1,0 +1,12 @@
+Given an array, find the int that appears an odd number of times.
+
+There will always be only one integer that appears an odd number of times.
+----------------------------------------------------------------------------
+function findOdd(A) {
+A=A.sort();
+for(var i=0;i<A.length;i++)
+{ 
+var dif=(A.lastIndexOf(A[i])-A.indexOf(A[i]))
+ if(A.indexOf(A[i])==A.lastIndexOf(A[i]))return A[i];
+ else if((dif%2==0) && (A[i]==A[i+2]))return A[i];
+}}
