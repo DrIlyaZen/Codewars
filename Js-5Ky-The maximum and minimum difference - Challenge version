@@ -1,0 +1,21 @@
+Description:
+Given two array of integers(arr1,arr2). Your task is going to find a pair of numbers(an element in arr1, and another element in arr2), their difference is as big as possible(absolute value); Again, you should to find a pair of numbers, their difference is as small as possible. Return the maximum and minimum difference values by an array: [ max difference, min difference ]
+----------------------------------------------------------------------------------------
+function maxAndMin(arr1,arr2){
+arr1=arr1.sort((a,b)=>a-b);
+arr2=arr2.sort((a,b)=>a-b)
+let max;
+ if((arr1[arr1.length-1]-arr2[0])>(arr2[arr2.length-1]-arr1[0])){
+    max=arr1[arr1.length-1]-arr2[0];
+ }
+  else{
+  max=arr2[arr2.length-1]-arr1[0];
+    };
+let min=Math.abs(arr1[0]-arr2[0]);
+   var pa = 0, pb = 0;
+  while (pa < arr1.length && pb < arr2.length) {
+    min = Math.min(min, Math.abs(arr1[pa] - arr2[pb]));
+    if (arr1[pa] < arr2[pb]) ++pa; else ++pb;
+  }
+return [max,min] 
+}
