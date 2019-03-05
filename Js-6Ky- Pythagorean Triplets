@@ -1,0 +1,17 @@
+Pythagorean Triples
+A Pythagorean triplet is a set of three numbers a, b, and c where a^2 + b^2 = c^2. In this Kata, you will be tasked with finding the Pythagorean triplets whose product is equal to n, the given argument to the function pythagorean_triplet.
+Your task
+In this Kata, you will be tasked with finding the Pythagorean triplets whose product is equal to n, the given argument to the function, where 0 < n < 10000000
+------------------------------------------------------------------------------------------------------
+function pythagoreanTriplet(n) {
+var count=Math.floor(Math.sqrt(n))
+for(var i=0;i<count;i++)
+  {
+   for(var j=0;j<count;j++)
+  {
+  if(n==Math.sqrt(i*i+j*j)*i*j)
+  {
+ var a=j;var b=i;break;
+  }}}
+ return [a,b,Math.sqrt(a*a+b*b)]
+}
