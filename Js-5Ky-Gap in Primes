@@ -1,0 +1,25 @@
+function isPrime(num) {
+    if(num < 2) return false;
+    for (var i = 2; i < num; i++) {
+        if(num%i==0)
+            return false;
+    }
+    return true;
+}
+function gap(g, m, n) {
+let result=[];var flag=true;
+for(let i=m;i<=n;i++)
+{
+flag=true;
+if(isPrime(i)==true){
+if(isPrime(i+g)==true){
+for(let j=i+1;j<i+g;j++)
+{
+if(isPrime(j)==true){flag=false;break}
+}
+if(flag==true){
+return [i,i+g];
+}
+}}}
+return null
+}
