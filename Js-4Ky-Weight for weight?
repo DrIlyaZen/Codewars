@@ -1,0 +1,36 @@
+Example:
+"56 65 74 100 99 68 86 180 90" ordered by numbers weights becomes: "100 180 90 56 65 74 68 86 99"
+
+When two numbers have the same "weight", let us class them as if they were strings and not numbers: 100 is before 180 because its "weight" (1) is less than the one of 180 (9) and 180 is before 90 since, having the same "weight" (9), it comes before as a string.
+
+All numbers in the list are positive numbers and the list can be empty.
+-------------------------------------------------------------------------------------------------------------------
+function orderWeight(str) {
+str=str.split(" ");
+var weight=str.map(a=>{
+return a.split("").reduce((b,c)=>+b+ +c)
+});
+var obj=new Object();
+for(let i=0;i<weight.length;i++)
+{
+obj[i]=weight[i];
+}
+var keysSorted = Object.keys(obj).sort(function(a,b){return obj[a]-obj[b]});
+var result=keysSorted.map(x=>str[x]);
+var weight2=result.map(a=>{
+return a.split("").reduce((b,c)=>+b+ +c)
+});
+console.log(result)
+for(let j=0;j<weight.length;j++)
+{
+if( weight2[j] == weight2[j+1]){
+if(result[j]>result[j+1]){
+var a=result[j];
+result[j]=result[j+1];
+result[j+1]=a;
+j-1;
+}
+}
+}
+return result.join(" ")
+}
