@@ -1,0 +1,55 @@
+Create a simple calculator that given a string of operators (+ - * and /) and numbers separated by spaces returns the value of that expression
+
+Example:
+
+Calculator().evaluate("2 / 2 + 3 * 4 - 6") # => 7
+Remember about the order of operations! Multiplications and divisions have a higher priority and should be performed left-to-right. Additions and subtractions have a lower priority and should also be performed left-to-right.
+---------------------------------------------------------------------
+var calc = function (expression) {
+
+var s=expression.match(/\d+\.\d+|\d+|[-+*\/(/)]/g).map(x=> isNaN(x)?x:Number(x));
+// current
+var current = () =>s[0] || "";
+// TurnLeft
+var shift= ()=> s.shift();
+//Petmis
+let perm=(...c)=>c.includes(current());
+//Метод includes() определяет, содержит ли массив определённый элемент, возвращая в зависимости от этого true или false
+//calculating
+var calc=(c,funct)=>perm(c) && shift() && funct();
+//Int=Float
+let IsInt= (n) =>Number(n)===n && n%1 ===0;
+let IsFloat= (n) =>Number(n)===n && n%1 !==0;
+let  IntInFloat=()=>parseFloat(shift());
+//Число или другое?
+let or=()=>{
+if(IsInt(current()) || IsFloat(current())){return IntInFloat()}
+if(perm("-")){
+shift();
+return -or();
+}
+return 0;
+}
+let t=()=>{
+let res=or();
+while(perm("*","/")){
+calc("*",() => res*=or());
+calc("/",() => res/=or());
+}
+return res;
+}
+let exp= ()=>{
+let res=t();
+while(perm("+","-")){
+calc("+",()=> res+=t());
+calc("-",()=> res-=t());
+}
+return res;
+}
+return exp();
+}
+const Calculator = function() {
+  this.evaluate = string => {
+    return calc.call(this,string)
+  }
+};
