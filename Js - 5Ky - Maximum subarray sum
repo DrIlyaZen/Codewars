@@ -1,0 +1,13 @@
+var maxSequence = function(arr){
+  let max=arr[0];
+for(let i=0;i<arr.length;i++){
+  let current=0;
+  for(let j=i;j<arr.length;j++){
+    current+=arr[j];
+    if(current>max){
+      max=current;
+      }
+  }
+}
+return max>0?max:0;
+}
