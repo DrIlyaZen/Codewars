@@ -1,0 +1,18 @@
+Given an unsorted array of integer values, find the maximum positive sum of any contiguous range within the array.
+
+An array containing only negative values can return 0. Your solution should be efficient enough to not throw a timeout exception.
+--------------------------------------------------------------------------------
+function maxContiguousSum (arr) {
+let max=0;
+  for(let i=0;i<arr.length;i++)
+{
+let cap=0;
+for(let j=i;j<arr.length;j++)
+{
+cap+=arr[j];
+if(cap>max){max=cap};
+}
+  }
+return max;
+}
+-------------------------------------------------------------------------------------
