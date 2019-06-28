@@ -1,0 +1,26 @@
+The drawing below gives an idea of how to cut a given "true" rectangle into squares ("true" rectangle meaning that the two dimensions are different).
+
+alternative text
+
+Can you translate this drawing into an algorithm?
+
+You will be given two dimensions
+
+a positive integer length (parameter named lng)
+a positive integer width (parameter named wdth)
+You will return an array or a string (depending on the language; Shell bash, PowerShell and Fortran return a string) with the size of each of the squares.
+----------------------------------------------------------------
+function sqInRect(lng, wdth){
+if(lng==wdth){return null};
+let sqr=lng*wdth;let check,checkSqr,div;
+let res=[];
+lng>wdth?check=wdth:check=lng;
+  while(check!=0){
+    checkSqr=check*check;
+    div=sqr-checkSqr;
+      if(div>=0){res.push(check);sqr=div};
+    //res.push(check);
+      if(div<checkSqr){check--};
+    }
+    return res;      
+}
