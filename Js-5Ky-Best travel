@@ -1,0 +1,17 @@
+function chooseBestSum(t, k, ls) {
+let res=[],cap,counter=0;
+  for(let i=0;i<ls.length;i++){
+  cap=ls[i];
+    for (let j=i+1;j<ls.length;j++){
+    cap+=ls[j];
+    for (let z=j+1;z<ls.length;z++){
+    cap+=ls[z];
+    counter++;
+    if(counter==k-2){
+    if(cap <=t){res.push(cap);}
+    cap=ls[i]+ls[j];
+    counter=0;
+    }
+    }}}
+      return res.sort((a,b)=>b-a)[0]||null;
+}
