@@ -1,0 +1,46 @@
+Snail Sort
+Given an n x n array, return the array elements arranged from outermost elements to the middle element, traveling clockwise.
+
+array = [[1,2,3],
+         [4,5,6],
+         [7,8,9]]
+snail(array) #=> [1,2,3,6,9,8,7,4,5]
+For better understanding, please follow the numbers of the next array consecutively:
+
+array = [[1,2,3],
+         [8,9,4],
+         [7,6,5]]
+snail(array) #=> [1,2,3,4,5,6,7,8,9]
+------------------------------------------------------------------------
+snail = function(array) {
+let direction="R";//,"D","L","U"];
+let result="";
+while(array.length!=0){
+for(let i=0;i<array.length;i++){
+  if(direction==="R"){
+    result+=","+array.shift();
+        direction="D";
+  }
+    if(direction==="L"){
+    result+=","+array.pop().reverse();
+       direction="U";
+  }
+   if(direction==="D"){
+   for(j=0;j<array.length;j++){
+    result+=","+array[j].pop();
+    }
+    direction="L";
+   }
+   if(direction==="U"){
+   for(j=array.length-1;j>0;j--){
+    result+=","+array[j].shift();
+    }
+    direction="R";
+   }
+   
+  }
+  }
+if(result==","){return []};
+result=result.slice(1).split(",").map(a=>+a);
+return result || [];
+}
