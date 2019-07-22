@@ -1,0 +1,42 @@
+Complete the solution so that it strips all text that follows any of a set of comment markers passed in. Any whitespace at the end of the line should also be stripped out.
+
+Example:
+
+Given an input string of:
+
+apples, pears # and bananas
+grapes
+bananas !apples
+The output expected would be:
+
+apples, pears
+grapes
+bananas
+----------------------------------------------------------
+function solution(input, markers) {
+let flag;
+let arr = input.split('\n');
+let container="";
+let result="";
+let counter=0;
+for(let i = 0;i < arr.length;i ++){
+counter=0;
+  for(let j = 0;j < markers.length;j ++)
+  {
+    if(!~arr[i].indexOf(markers[j])){
+    counter++
+    }
+    if(~arr[i].indexOf(markers[j])){
+    flag = arr[i].indexOf(markers[j]);
+    container = arr[i].slice(0,flag-1);
+    result+=container+'\n';
+    }
+    if(counter==markers.length){
+    container = arr[i];
+    result+=container+'\n';
+    }
+    }
+    }
+   return result.slice(0,result.length-1);
+
+};
