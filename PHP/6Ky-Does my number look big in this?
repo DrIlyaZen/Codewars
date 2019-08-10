@@ -1,0 +1,16 @@
+The Challenge:
+
+Your code must return true or false depending upon whether the given number is a Narcissistic number in base 10.
+
+Error checking for text strings or other invalid inputs is not required, only valid integers will be passed into the function.
+--------------------------------------------------------------------
+function narcissistic(int $value): bool {
+$check =$value+"";
+$check=str_split($check);
+$cap = 0;
+for($i = 0;$i < count($check);$i ++){
+$cap += pow($check[$i],count($check));
+};
+if($cap == $value){return true;};
+return false;
+}
