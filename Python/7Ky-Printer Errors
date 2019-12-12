@@ -1,0 +1,9 @@
+def printer_error(s):
+    count=0
+    a=["a","b","c","d","e","f","g","h","i","j","k","l","m"]
+    for x in s:
+        if x in a:
+            continue
+        else:
+            count+=1
+    return str(count)+"/"+str(len(s))
