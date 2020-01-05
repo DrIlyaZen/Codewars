@@ -1,0 +1,8 @@
+def disemvowel(string):
+    print(string)
+    vowels="aeuoiIAEUO"
+    ret=""
+    for x in string:
+        if vowels.find(x)==-1:
+            ret+=x
+    return ret
